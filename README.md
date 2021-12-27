@@ -22,7 +22,7 @@ This is easy. Simply put the file path to your json file you downloaded earlier 
 
 ## Step 4: Configure the Neos end
 
-If you're using the TTS mute helper in my public folder, simply spawn it out and link it to you. The text to the upper left side of the message box should say "TTS Connected". If not, give it at least 10 seconds. If it still doesn't connect, please send me a message so I can help you out. 
+If you're using the TTS mute helper in my public folder (neosrec:///U-Kodufan/R-da99344a-2bb4-4740-b159-a58a5122c018), simply spawn it out and link it to you. The text to the upper left side of the message box should say "TTS Connected". If not, give it at least 10 seconds. If it still doesn't connect, please send me a message so I can help you out. 
 
 If you want to add the system to your own mute helper, follow these steps:
 
