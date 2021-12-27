@@ -27,7 +27,9 @@ If you're using the TTS mute helper in my public folder (neosrec:///U-Kodufan/R-
 If you want to add the system to your own mute helper, follow these steps:
 
 - Add a dynamic variable space to the root of your mute helper titled "MuteHelper"
-- Add a dynamic reference user variable titled "MuteHelper/User", a dynamic string variable titled "MuteHelper/Message", and a dynamic bool variable titled "MuteHelper/Playing"
+- Add a dynamic reference user variable titled "MuteHelper/User", a dynamic string variable titled "MuteHelper/Message", a dynamic float variable titled "MuteHelper/Delay" and a dynamic bool variable titled "MuteHelper/Playing"
 - Add a websocket client with the URL: ws://localhost:8766 and a dynamic reference variable driver from "MuteHelper/User" driving the user field of the websocket component.
 - Make sure the user variable points to you when using the mute helper, most easily done with an "active user slot" node pointing to the mute helper which should be parented to you. When you send a message, you should first write the message to the dynamic string and then send an impulse to "MuteHelper/Send"
 - Make sure "MuteHelper/Playing" is written to false when unlinking the mute helper, otherwise it will not speak when you re-link it
+
+The delay represents how long the websocket will wait after recieving the audio file to play it. Since it is impossible to play a file when it's loaded in Neos, this will have to suffice. With these files being usually under 100kb each, a delay above 1 second ought to be sufficient. If people cannot hear the message or only part of it, consider increasing this.
