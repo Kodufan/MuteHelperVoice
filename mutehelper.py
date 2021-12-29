@@ -1,5 +1,4 @@
 import asyncio
-import atexit
 import subprocess
 import time
 import os
@@ -33,23 +32,32 @@ with open(configPath, "r") as ymlfile:
     cfg = yaml.safe_load(ymlfile)
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = cfg["MuteHelper"]["credentialPath"]
 publicIP = cfg["MuteHelper"]["publicIP"]
+region = cfg["MuteHelper"]["region"]
+gender = cfg["MuteHelper"]["gender"]
+genderNum = 0
 
-shutil.rmtree(os.getcwd() + "\\Output\\")
-os.makedirs(os.getcwd() + "\\Output\\")
-
+try:
+    os.makedirs(os.getcwd() + "\\Output\\")
+except FileExistsError:
+    shutil.rmtree(os.getcwd() + "\\Output\\")
+    os.makedirs(os.getcwd() + "\\Output\\")
 
 subprocess.Popen(["python", "-m", "http.server", "--directory", "Output"])
 
+if (gender.upper() == "MALE"):
+    genderNum = 1
+elif (gender.upper() == "FEMALE"):
+    genderNum = 2
+elif (gender.upper() == "NEUTRAL"):
+    genderNum = 3
 
 # Instantiates a client
 client = texttospeech.TextToSpeechClient()
 
-
-
 # Build the voice request, select the language code ("en-US") and the ssml
 # voice gender ("neutral")
 voice = texttospeech.VoiceSelectionParams(
-    language_code="en-gb", ssml_gender=texttospeech.SsmlVoiceGender.MALE
+    language_code = region, ssml_gender=texttospeech.SsmlVoiceGender(1)
 )
 
 # Select the type of audio file you want returned
@@ -108,12 +116,7 @@ async def server(websocket, path):
         except:
             print (get_time(),'Client disconnected!')
 
-def clearDir():
-    shutil.rmtree(os.getcwd() + "\\Output\\")
-    os.makedirs(os.getcwd() + "\\Output\\")
-
 async def main():
-    atexit.register(clearDir)
     async with serve(server, "localhost", 8766):
         await asyncio.Future()
 

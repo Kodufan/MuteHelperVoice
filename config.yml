@@ -1,3 +1,7 @@
 MuteHelper:
     credentialPath: "C:\\MuteHelperVoice\\mutehelpervoice-336405-35f94ca7eb7a.json"
+    region: en-us
+    # Examples for region are en-us, en-gb, de-de, ja-jp. This isn't case sensitive.
+    gender: MALE
+    # The options for gender are MALE, FEMALE, or NEUTRAL. This is case sensitive.
     publicIP: 173.81.77.152:8000
