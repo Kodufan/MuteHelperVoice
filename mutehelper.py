@@ -57,7 +57,7 @@ client = texttospeech.TextToSpeechClient()
 # Build the voice request, select the language code ("en-US") and the ssml
 # voice gender ("neutral")
 voice = texttospeech.VoiceSelectionParams(
-    language_code = region, ssml_gender=texttospeech.SsmlVoiceGender(1)
+    language_code = region, ssml_gender=texttospeech.SsmlVoiceGender(genderNum)
 )
 
 # Select the type of audio file you want returned
